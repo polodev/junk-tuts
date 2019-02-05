@@ -276,7 +276,79 @@ soledad theme
 
 
 
+# getting all posts using cat id
 
+~~~php
+
+$args = array(
+  'post_type'        => "{$prefix}_project",
+  'posts_per_page'   => -1,
+  'suppress_filters' => false,
+  'orderby'          => $data['orderby'],
+);
+
+switch ( $data['orderby'] ) {
+  case 'title':
+  case 'menu_order':
+  $args['order'] = 'ASC';
+  break;
+}
+
+$posts = get_posts( $args );
+~~~
+
+
+## no image preview in case of elementor addon  other place also applicable
+
+~~~php
+$img = get_the_post_thumbnail_url( $post, $thumb_size );
+
+if ( !$img ) {
+    if( !empty( RDTheme::$options['no_preview_image']['id'] ) ) {
+      $img = wp_get_attachment_image_src( RDTheme::$options['no_preview_image']['id'], $thumb_size, true );
+      $img = $img[0];
+    }
+    else {
+      $img  = Helper::get_img( 'noimage_500x400.jpg' );
+    }
+  }
+~~~
+
+## getting excerpt or make it
+
+~~~php
+if ( !has_excerpt($post) ) {
+  $content = $post->post_content;
+}
+else {
+  $content = $post->post_excerpt;
+}
+$content = wp_trim_words( $content, 30 );
+~~~
+
+# format date in wp
+~~~php
+public static function koncreate_post_date($date_string)
+{
+  $time = strtotime( $date_string );
+  return date( 'F j, Y', $time );
+}
+~~~
+# pluralize comment count
+~~~php
+public static function generate_comment_meta($comment_count) {
+  // $comment_count = $post->comment_count
+  $comments = __('No Comments', 'koncreate-core');
+  $comment_label = __('Comments', 'koncreate-core');
+  if ($comment_count) {
+    $comments = sprintf(
+      _n( '%s comment', '%s comments', $comment_count, 'koncreate-core'),
+      number_format_i18n($comment_count)
+    );
+  }
+  return "{$comment_label}:<span>{$comments}</span>";
+}
+~~~
 
 
 
