@@ -351,4 +351,10 @@ public static function generate_comment_meta($comment_count) {
 ~~~
 
 
+# excerpt from post with 40 word
+
+~~~php
+$content = wp_trim_words( get_the_excerpt($first_post), 40 );
+~~~
+
 
