@@ -357,4 +357,30 @@ public static function generate_comment_meta($comment_count) {
 $content = wp_trim_words( get_the_excerpt($first_post), 40 );
 ~~~
 
+# finding all code comments in sublime using
+
+[https://blog.ostermiller.org/find-comment](https://blog.ostermiller.org/find-comment);
+
+~~~php
+# perl non greedy
+/\*(?:.|[\r\n])*?\*/
+
+# perl greedy
+/((?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:\/\/.*))/
+
+
+~~~
+
+# conditionally loading js for single page
+
+~~~php
+$prefix = Constants::$theme_prefix;
+if (is_singular("{$prefix}_project")) {
+  wp_enqueue_style( 'owl-carousel' );
+  wp_enqueue_style( 'owl-theme-default' );
+  wp_enqueue_script( 'owl-carousel-js' );
+}
+~~~
+
+
 
