@@ -138,4 +138,12 @@ for selecting all word repetition (alt + f3)
 
 
 
+# for layout setting in redux
+
+inc/option/layout.php
+inc/layout-settings.php
+
+type will be declare in layout.php
+use in layout-settings.php file
+
 

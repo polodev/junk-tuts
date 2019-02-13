@@ -157,3 +157,21 @@ just calling one after another (pot, package, zip)
 ~~~js
 "build": "npm run pot && npm run package && npm run zip"
 ~~~
+
+# webpack mix which include in manik vi pc
+
+~~~js
+mix.less('./assets/less/style.less', './assets/css/')
+.less( './assets/less/elementor.less', './assets/css/')
+.options({
+       processCssUrls: false
+   })
+.browserSync({
+    proxy: 'localhost/medilink',
+    files: [
+        './assets/css/style.css',
+        './assets/css/elementor.css',
+        './*'
+    ]
+});
+~~~

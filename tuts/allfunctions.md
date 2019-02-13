@@ -383,4 +383,38 @@ if (is_singular("{$prefix}_project")) {
 ~~~
 
 
+# hex to rgb value
+
+~~~php
+  public static function hex2rgb($hex) {
+    $hex = str_replace("#", "", $hex);
+    if(strlen($hex) == 3) {
+      $r = hexdec(substr($hex,0,1).substr($hex,0,1));
+      $g = hexdec(substr($hex,1,1).substr($hex,1,1));
+      $b = hexdec(substr($hex,2,1).substr($hex,2,1));
+    } else {
+      $r = hexdec(substr($hex,0,2));
+      $g = hexdec(substr($hex,2,2));
+      $b = hexdec(substr($hex,4,2));
+    }
+    $rgb = "$r, $g, $b";
+    return $rgb;
+  }
+~~~
+
+
+# deleting linux git credential
+
+~~~bash
+git config --global --unset credential.helper
+~~~
+
+# redux config
+
+~~~php
+// hide default value is false / inc/option/layout.ph
+'default'  => $hide_layout_select ? 'full-width' : 'right-sidebar',
+'required' => $hide_layout_select ,
+~~~
+
 
