@@ -417,4 +417,18 @@ git config --global --unset credential.helper
 'required' => $hide_layout_select ,
 ~~~
 
+# excerpt generation;
+~~~php
+  public static function generate_excerpt($post, $length = 55)
+  {
+    if (has_excerpt($post)) {
+      return wp_trim_words( get_the_excerpt($post), $length, '');
+    }
+
+    $post = get_post($post);
+    $excerpt = wp_trim_excerpt($post->post_content);
+    return wp_trim_words( $excerpt ) . $length;
+  }
+~~~
+
 

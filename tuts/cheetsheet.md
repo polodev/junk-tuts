@@ -148,7 +148,17 @@ use in layout-settings.php file
 
 # getting excerpt
 ~~~php
-$content = wp_trim_words( get_the_excerpt($post), 20 );
+public static function generate_excerpt($post, $length = 55)
+  {
+    if (has_excerpt($post)) {
+      return wp_trim_words( get_the_excerpt($post), $length, '');
+    }
+
+    $post = get_post($post);
+    $content = wp_strip_all_tags($post->post_content);
+    return wp_trim_words( $content, $length, '' ) . $length;
+  }
+
 ~~~
 
 
