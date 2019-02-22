@@ -146,4 +146,10 @@ inc/layout-settings.php
 type will be declare in layout.php
 use in layout-settings.php file
 
+# getting excerpt
+~~~php
+$content = wp_trim_words( get_the_excerpt($post), 20 );
+~~~
+
+
 
