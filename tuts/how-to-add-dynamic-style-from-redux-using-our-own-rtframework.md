@@ -1,3 +1,4 @@
+
 # sample dynamic style php file
 
 # adding dynamic style
@@ -5,7 +6,13 @@
 $this->dynamic_style();// Dynamic style
 private function dynamic_style(){
   // $dynamic_css  = $this->template_style();
-  $dynamic_css = '';
+  $dynamic_css = $this->generacte_responsive_css();
+  $dynamic_css .= "
+    body {
+      background-color: salmon;
+      color: white;
+    }
+   ";
   ob_start();
   Helper::requires( 'dynamic-style.php' );
   // Helper::requires( 'dynamic-style-elementor.php' );
