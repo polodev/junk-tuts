@@ -431,4 +431,22 @@ git config --global --unset credential.helper
   }
 ~~~
 
+# sanitize css field
+
+~~~php
+private function sanitize_css_size_unit($value)
+{
+  $allowed_units = ['px', 'em', 'rem', 'pt', '%'];
+  $allowed_bol = false;
+  foreach ( $allowed_units as $allowed_unit ) {
+    if ( strpos($value, $allowed_unit) !== false ) {
+      $allowed_bol = true;
+      break;
+    }
+  }
+  $value = $allowed_bol ? $value : (int) $value . 'px';
+  return $value;
+}
+~~~
+
 
