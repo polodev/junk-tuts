@@ -61,8 +61,139 @@ public function theme_setup() {
 ~~~
 
 # add css
-~~~
+~~~css
 /* Main Navigation */
+
+.hover_style_1 {
+  li a {
+  // animation: none;
+  &:before, &:after {
+    height: 3px;
+    position: absolute;
+    content: '';
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    background-color: @primaryColor;
+    width: 0;
+  }
+  &:before {
+    top: 0;
+    left: 0;
+  }
+  &:after {
+    bottom: 0;
+    right: 0;
+  }
+  &:hover{
+    color: inherit;
+     &:before, &:after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.hover_style_2 {
+  li {
+    display: inline-block;
+    list-style: outside none none;
+    margin: 0 1.5em;
+    padding: 0;
+  }
+  li a {
+    padding: 0.5em 0;
+    color: #111;
+    position: relative;
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+  li a:before,
+  li a:after {
+    position: absolute;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+  }
+  li a:before {
+    top: 0;
+    display: block;
+    height: 3px;
+    width: 0%;
+    content: "";
+    background-color: @primaryColor;
+  }
+  li a:after {
+    left: 0;
+    top: 0;
+    padding: 0.5em 0;
+    position: absolute;
+    content: attr(data-hover);
+    color: #111;
+    white-space: nowrap;
+    max-width: 0%;
+    overflow: hidden;
+  }
+  li a:hover:before,
+  li .current a:before {
+    opacity: 1;
+    width: 100%;
+  }
+  li a:hover:after,
+  li .current a:after {
+    max-width: 100%;
+  }
+}
+
+.hover_style_3 {
+  li {
+    display: inline-block;
+    list-style: outside none none;
+    margin: 0 1.5em;
+    padding: 0;
+  }
+  li a {
+    padding: 0.5em 0;
+    color: #111;
+    position: relative;
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+  li a:before,
+  li a:after {
+    position: absolute;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+  }
+  li a:before {
+    bottom: 0;
+    display: block;
+    height: 3px;
+    width: 0%;
+    content: "";
+    background-color: @primaryColor;
+  }
+  li a:after {
+    left: 0;
+    top: 0;
+    padding: 0.5em 0;
+    position: absolute;
+    content: attr(data-hover);
+    color: #111;
+    white-space: nowrap;
+    max-width: 0%;
+    overflow: hidden;
+  }
+  li a:hover:before {
+    opacity: 1;
+    width: 100%;
+  }
+  li a:hover:after,
+  li .current a:after {
+    max-width: 100%;
+  }
+
+}
+
+
 .main-header {
     background-color: #fff;
     transition: all 0.3s ease-out;
@@ -264,9 +395,7 @@ public function theme_setup() {
                 background-color: #222;
                 color: #fff;
                 border-bottom: 1px solid rgba(255,255,255,.3);
-                &:hover {
-                  animation: none;
-                }
+
             }
             ul {
                 position: relative;
@@ -274,9 +403,24 @@ public function theme_setup() {
                 left: inherit;
                 box-shadow: none;
                 background: inherit;
+
+
+
                 li {
                     padding: 0;
+                    &:hover {
+                      a {
+                        background: inherit;
+                        color: inherit;
+                      }
+                    }
                 }
+                // hover style inside submenu
+                // it contains li a before&after
+                .hover_style_1();
+
+
+
             }
         }
         li:after {
@@ -298,11 +442,5 @@ public function theme_setup() {
         display: block !important;
     }
 }
-
-
 ~~~
 
-
-# make further customization
-
-customize as like as you want
