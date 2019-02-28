@@ -65,7 +65,7 @@ public function theme_setup() {
 /* Main Navigation */
 .main-header {
     background-color: #fff;
-    transition: all 0.5s ease-out;
+    transition: all 0.3s ease-out;
     ul {
         .ul0();
     }
@@ -79,8 +79,13 @@ public function theme_setup() {
         }
         .main-navigation {
             flex: 1;
+
+           nav > ul > li > a {
+              text-transform: uppercase;
+            }
+
             ul {
-                transition: all 0.5 ease-out 0s;
+                transition: all 0.3 ease-out 0s;
                 @media all and (max-width: 767.98px) {
                     text-align: center;
                 }
@@ -88,11 +93,32 @@ public function theme_setup() {
                     display: inline-block;
                     position: relative;
                     a {
+
+
+                        &:hover {
+                            animation: toBottomFromTop10 0.3s forwards;
+                            color: @primaryColor;
+                            @keyframes toBottomFromTop10 {
+                                49% {
+                                    transform: translateY(10%);
+                                }
+                                50% {
+                                    opacity: 0;
+                                    transform: translateY(-10%);
+                                }
+                                51% {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+
+
+
                         display: block;
                         position: relative;
                         text-decoration: none;
                         font-weight: 500;
-                        transition: all 0.5s ease-out;
+                        transition: all 0.3s ease-out;
                         color: #111111;
                         padding: 32px 15px;
                         @media all and (max-width: 1199.98px) {
@@ -121,9 +147,9 @@ public function theme_setup() {
                     width: calc(~"100% - "40px);
                     left: 20px;
                     bottom: 0;
-                    background-color: #111111;
+                    background-color: @primaryColor;
                     z-index: 10;
-                    transition: all 0.1s ease-out;
+                    transition: all 0.3s ease-out;
                 }
                 &.menu > li > a:hover {
                     animation: toBottomFromTop10 0.3s forwards;
@@ -131,7 +157,7 @@ public function theme_setup() {
                 &.menu > li:hover > a:after {
                     opacity: 1;
                     visibility: visible;
-                    transition: all 0.5s ease-out;
+                    transition: all 0.3s ease-out;
                 }
                 &.menu > li.current-menu-item > a,
                 &.menu > li.current > a {
@@ -145,7 +171,7 @@ public function theme_setup() {
 /* Submenu */
 .main-header .main-navigation-area .main-navigation ul {
     > li > ul {
-        border-top: 1px solid #111111;
+        border-top: 1px solid @primaryColor;
         ul {
             border: none;
         }
@@ -159,7 +185,6 @@ public function theme_setup() {
         top: 100%;
         background-color: #fff;
         padding-top: 20px;
-        padding-bottom: 20px;
         transform-origin: 0 0 0;
         transition: all 0.3s ease 0s;
         z-index: 99 !important;
@@ -177,9 +202,8 @@ public function theme_setup() {
         }
         li {
             display: block;
-            padding: 0 20px;
             &:hover > a {
-                background-color: #222;
+                background-color: @primaryColor;
                 color: #fff;
             }
             &:last-child {
@@ -188,7 +212,6 @@ public function theme_setup() {
             a {
                 display: block;
                 color: #111;
-                border-radius: 4px;
                 padding: 10px 15px !important;
             }
         }
@@ -205,6 +228,7 @@ public function theme_setup() {
     li ul li ul {
         left: 211px;
         top: 0;
+        padding-top: 0;
         width: 210px;
     }
     > li > ul > li:hover > ul {
@@ -223,18 +247,26 @@ public function theme_setup() {
     }
     > ul.sub-menu {
         background-color: #fff;
-        padding: 10px 0;
-        width: 460px;
+        width: inherit;
+        display: flex;
+        transform: translateX(-50%);
+        left: 50%;
         > li {
             display: block;
             float: left;
-            margin: 0 5px;
+            margin-right: 10px;
+            &:last-child {
+              margin: 0;
+            }
             width: 210px;
             border: none;
             > a {
                 background-color: #222;
                 color: #fff;
                 border-bottom: 1px solid rgba(255,255,255,.3);
+                &:hover {
+                  animation: none;
+                }
             }
             ul {
                 position: relative;
@@ -266,6 +298,7 @@ public function theme_setup() {
         display: block !important;
     }
 }
+
 
 ~~~
 
